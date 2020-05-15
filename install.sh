@@ -83,53 +83,6 @@ read tmpvar
 echo "Instalando Arch Linux" 
 pacstrap /mnt base base-devel linux linux-firmware grub os-prober efibootmgr sudo nano intel-ucode xorg xorg-xinit nvidia nvidia-utils networkmanager ntfs-3g git xdg-user-dirs reflector
 
-echo "Selección del entorno de escritorio:"
-echo "1.- Kde"
-echo "2.- Gnome"
-echo "3.- Cinnamon"
-echo "4.- Mate"
-echo "5.- Deepin"
-echo "6.- LXDE"
-while :
-do
-    read -p "Qué escritorio quieres instalar? " pEscritorio
-    case $pEscritorio in
-        1)
-            echo "Instalando Kde"
-            pacstrap /mnt plasma-desktop user-manager kscreen konsole dolphin firefox kate breeze-gtk kde-gtk-config libappindicator-gtk3 plasma-nm plasma-pa ark okular kinfocenter kwalletmanager transmission-qt gwenview kipi-plugins spectacle kcolorchooser vlc konversation
-            break
-            ;;
-        2)
-            echo "Instalando Gnome"
-            pacstrap /mnt gnome
-            break
-            ;;
-        3)
-            echo "Instalando Cinnamon"
-            pacstrap /mnt cinnamon
-            break
-            ;;
-        4)
-            echo "Instalando Mate"
-            pacstrap /mnt mate
-            break
-            ;;
-        5)
-            echo "Instalando Deepin"
-            pacstrap /mnt deepin
-            break
-            ;;
-        6)
-            echo "Instalando LXDE"
-            pacstrap /mnt lxdm-gtk3
-            break
-            ;;
-        *)
-            echo "Opción no válida, inténtalo de nuevo."
-            ;;
-    esac
-done
-
 #Generar fichero fstab
 genfstab -U /mnt >> /mnt/etc/fstab
 
