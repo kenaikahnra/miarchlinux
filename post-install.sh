@@ -43,6 +43,53 @@ passwd $USER
 #Actualizar repositorios
 reflector -c "ES" -f 12 -l 10 -n 12 --save /etc/pacman.d/mirrorlist
 
+echo "Selección del entorno de escritorio:"
+echo "1.- Kde"
+echo "2.- Gnome"
+echo "3.- Cinnamon"
+echo "4.- Mate"
+echo "5.- Deepin"
+echo "6.- LXDE"
+while :
+do
+    read -p "Qué escritorio quieres instalar? " pEscritorio
+    case $pEscritorio in
+        1)
+            echo "Instalando Kde"
+            pacman -S --noconfirm plasma-desktop user-manager kscreen konsole dolphin firefox kate breeze-gtk kde-gtk-config libappindicator-gtk3 plasma-nm plasma-pa ark okular kinfocenter kwalletmanager transmission-qt gwenview kipi-plugins spectacle kcolorchooser vlc konversation
+            break
+            ;;
+        2)
+            echo "Instalando Gnome"
+            pacman -S --noconfirm gnome
+            break
+            ;;
+        3)
+            echo "Instalando Cinnamon"
+            pacman -S --noconfirm cinnamon
+            break
+            ;;
+        4)
+            echo "Instalando Mate"
+            pacman -S --noconfirm mate
+            break
+            ;;
+        5)
+            echo "Instalando Deepin"
+            pacman -S --noconfirm deepin
+            break
+            ;;
+        6)
+            echo "Instalando LXDE"
+            pacman -S --noconfirm lxdm-gtk3
+            break
+            ;;
+        *)
+            echo "Opción no válida, inténtalo de nuevo."
+            ;;
+    esac
+done
+
 echo "Selección del gestor de inicio de sesión:"
 echo "1.- Sddm (Kde)"
 echo "2.- Gdm (Gnome)"
@@ -55,32 +102,32 @@ do
     case $pGestor in
         1)
             echo "Instalando Sddm"
-            pacman -S sddm sddm-kcm
+            pacman -S --noconfirm sddm sddm-kcm
             systemctl enable sddm.service
             break
             ;;
         2)
             echo "Instalando Gdm"
-            pacman -S gdm
+            pacman -S --noconfirm gdm
             systemctl enable gdm.service
             break
             ;;
         3)
             echo "Instalando Lightdm"
-            pacman -S lightdm lightdm-gtk-greeter
+            pacman -S --noconfirm lightdm lightdm-gtk-greeter
             systemctl enable lightdm.service
             break
             ;;
         4)
             echo "Instalando Lightdm"
-            pacman -S lightdm lightdm-gtk-greeter
+            pacman -S --noconfirm lightdm lightdm-gtk-greeter
             echo "greeter-session=lightdm-deepin-greeter" >> /etc/lightdm/lightdm.conf
             systemctl enable lightdm.service
             break
             ;;
         5)
             echo "Instalando LXdm"
-            pacman -S lxdm
+            pacman -S --noconfirm lxdm
             systemctl enable lxdm.service
             break
             ;;
