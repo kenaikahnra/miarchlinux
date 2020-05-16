@@ -59,7 +59,6 @@ echo "2.- Gnome"
 echo "3.- Cinnamon"
 echo "4.- Mate"
 echo "5.- Deepin"
-echo "6.- LXDE"
 echo ""
 while :
 do
@@ -91,11 +90,6 @@ do
             pacman -S --noconfirm deepin
             break
             ;;
-        6)
-            echo "Instalando LXDE"
-            pacman -S --noconfirm lxdm-gtk3
-            break
-            ;;
         *)
             echo "Opción no válida, inténtalo de nuevo."
             ;;
@@ -109,7 +103,6 @@ echo "1.- Sddm (Kde)"
 echo "2.- Gdm (Gnome)"
 echo "3.- Lightdm (Cinnamon/Mate)"
 echo "4.- Lightdm (Deepin)"
-echo "5.- LXdm (LXDE)"
 echo ""
 while :
 do
@@ -139,12 +132,6 @@ do
             pacman -S --noconfirm lightdm lightdm-gtk-greeter
             sed -i 's/#greeter-session=example-gtk-gnome/greeter-session=lightdm-deepin-greeter/g' /etc/lightdm/lightdm.conf
             systemctl enable lightdm.service
-            break
-            ;;
-        5)
-            echo "Instalando LXdm"
-            pacman -S --noconfirm lxdm
-            systemctl enable lxdm.service
             break
             ;;
         *)
