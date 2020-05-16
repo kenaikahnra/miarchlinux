@@ -3,15 +3,31 @@
 clear
 echo "Instalador de Arch de Gaizka"
 echo ""
+
 #Actualizar el reloj del sistema
 timedatectl set-ntp true
 
+#Seleccion de disco
+echo "Discos detectados:"
+lsblk
+echo ""
+read -p "Escribe el nombre del disco donde quieres instalar Arch linux (todo el contenido será borrado): " TARGET
+read -p 'Estas seguro de que deseas borrar todo el contenido de /dev/$TARGET? [y/N]: ' pBorrado
+if ! [ $pBorrado = 'y' ] && ! [ $pBorrado = 'Y' ]
+then 
+    echo "Saliendo del instalador."
+    exit
+fi
+wipefs -a /dev/$TARGET &>/dev/null
+read -p "Cuánto espacio (en GiB) quieres dedicar a la partición raiz? para el sistema operativo? " pEspacio
+
 #Información particionado
+echo ""
 echo "A continuación se particionará el disco de la siguiente manera:"
 echo ""
-echo "1 - 512Mib se montará en /boot/efi"
-echo "2 - 2GiB se utilizará como swap"
-echo "3 - 40Gib se montará en /"
+echo "1 - 512Mib - se montará en /boot/efi"
+echo "2 - 2GiB - se utilizará como swap"
+echo "3 - ${pEspacio}Gib - se montará en /"
 echo "4 - el resto del disco se montará en /home"
 echo ""
 read -p 'Continuar? [y/N]: ' fsok
@@ -22,11 +38,7 @@ then
 fi
 
 echo ""
-echo "Discos detectados:"
-lsblk
-echo ""
-read -p "Escribe el nombre del disco donde quieres instalar Arch linux (todo el contenido será borrado): " TARGET
-wipefs -a /dev/$TARGET &>/dev/null
+
 
 # Crear particiones
 sed -e 's/\s*\([\+0-9a-zA-Z]*\).*/\1/' << EOF | fdisk /dev/$TARGET
@@ -45,7 +57,7 @@ sed -e 's/\s*\([\+0-9a-zA-Z]*\).*/\1/' << EOF | fdisk /dev/$TARGET
   p # primary partition
   3 # partition number 3
     # default, start immediately after preceding partition
-  +40G # 40 GB root partition
+  +${pEspacio}G # root partition
   n # new partition
   p # primary partition
   4 # partion number 4
