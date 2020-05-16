@@ -63,8 +63,8 @@ mkswap /dev/${TARGET}2
 swapon /dev/${TARGET}2
 
 #Formatear partición / y /home
-mkfs.ext4 /dev/${TARGET}3
-mkfs.ext4 /dev/${TARGET}4
+mkfs.ext4 -F /dev/${TARGET}3
+mkfs.ext4 -F /dev/${TARGET}4
 
 #Montar partición /
 mount /dev/${TARGET}3 /mnt
