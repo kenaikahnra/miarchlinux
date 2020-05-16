@@ -56,7 +56,7 @@ do
     case $pEscritorio in
         1)
             echo "Instalando Kde"
-            pacman -S --noconfirm plasma-desktop user-manager kscreen konsole dolphin firefox kate breeze-gtk kde-gtk-config libappindicator-gtk3 plasma-nm plasma-pa ark okular kinfocenter kwalletmanager transmission-qt gwenview kipi-plugins spectacle kcolorchooser vlc konversation
+            pacman -S --noconfirm plasma-desktop user-manager kscreen konsole dolphin kate breeze-gtk kde-gtk-config libappindicator-gtk3 plasma-nm plasma-pa ark okular kinfocenter kwalletmanager transmission-qt gwenview kipi-plugins spectacle kcolorchooser vlc konversation
             break
             ;;
         2)
@@ -129,6 +129,29 @@ do
             echo "Instalando LXdm"
             pacman -S --noconfirm lxdm
             systemctl enable lxdm.service
+            break
+            ;;
+        *)
+            echo "Opción no válida, inténtalo de nuevo."
+            ;;
+    esac
+done
+
+echo "Selección del navegador:"
+echo "1.- Firefox"
+echo "2.- Chromium"
+while :
+do
+    read -p "Qué navegador quieres instalar?" pNavegador
+    case $pNavegador in
+        1)
+            echo "Instalando Firefox"
+            pacman -S --noconfirm firefox
+            break
+            ;;
+        2)
+            echo "Instalando Chromium"
+            pacman -S --noconfirm chromium
             break
             ;;
         *)
