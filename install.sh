@@ -80,6 +80,8 @@ echo "Las particiones se han creado correctamente. Pulsa cualquier tecla para em
 read tmpvar
 
 # Install Arch Linux
+pacman -S --noconfirm reflector
+reflector -c "ES" -f 12 -l 10 -n 12 --save /etc/pacman.d/mirrorlist
 pacstrap /mnt base base-devel linux linux-firmware grub os-prober efibootmgr sudo nano intel-ucode xorg xorg-xinit nvidia nvidia-utils networkmanager ntfs-3g git xdg-user-dirs reflector
 
 #Generar fichero fstab
