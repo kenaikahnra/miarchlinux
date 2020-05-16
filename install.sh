@@ -71,7 +71,7 @@ mount /dev/${TARGET}3 /mnt
 
 #Montar partición /home si la hubiera
 mkdir /mnt/home
-mount /dev/${TARGET}4 /mnt
+mount /dev/${TARGET}4 /mnt/home
 
 echo "Particiones creadas:"
 lsblk /dev/$TARGET
@@ -86,11 +86,11 @@ pacstrap /mnt base base-devel linux linux-firmware grub os-prober efibootmgr sud
 genfstab -U /mnt >> /mnt/etc/fstab
 
 # Copy post-install system configuration script to new /root
-cp -rfv post-install.sh /mnt/root
-chmod a+x /mnt/root/post-install.sh
+cp -rfv post-install.sh /mnt
+chmod a+x /mnt/post-install.sh
 
 # Chroot into new system
-echo "Vas a entrar como root en tu nuevo Arch Linux, una vez dentro entra en la carpeta root y ejecuta ./post-install.sh para continuar con la instalación."
+echo "Vas a entrar como root en tu nuevo Arch Linux, una vez dentro ejecuta ./post-install.sh para continuar con la instalación."
 echo "Pulsa cualquier tecla para continuar."
 read tmpvar
 arch-chroot /mnt
@@ -98,11 +98,13 @@ arch-chroot /mnt
 # Finish
 clear
 echo "Si post-install.sh se ha ejecutado correctamente, ahora tienes instalado un sistema Arch linux completamente funcional."
-echo "Lo unico que falta es reiniciar en tu nuevo sistema."
+echo ""
 echo "Una vez que reinicies recuerda instalar el AUR Helper Yay y gamemode ejecutando:"
 echo "git clone https://aur.archlinux.org/yay-git.git"
 echo "cd yay-git"
 echo "makepkg -si"
 echo "yay gamemode lib32-gamemode"
+echo ""
 echo "Recuerda tambien eliminar el fichero post-install.sh de la carpeta /root"
 echo "Ya puedes reiniciar el sistema y disfrutar de la experiencia de Arch Linux."
+echo ""
