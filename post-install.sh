@@ -164,7 +164,7 @@ done
 sed -i "/\[multilib\]/,/Include/"'s/^#//' /etc/pacman.conf
 pacman -Syy
 
-read -p 'Quieres instalar bluetooth? [y/N]' pBluetooth
+read -p "Quieres instalar bluetooth? [y/N]" pBluetooth
 if ! [ $pBluetooth = 'y' ] && ! [ $pBluetooth = 'Y' ]
 then
     echo "No se instalará Bluetooth"
@@ -173,7 +173,7 @@ else
     pacman -S --noconfirm bluez bluez-utils 
 fi
 
-read -p 'Quieres instalar Discord? [y/N]' pDiscord
+read -p "Quieres instalar Discord? [y/N]" pDiscord
 if ! [ $pDiscord = 'y' ] && ! [ $pDiscord = 'Y' ]
 then
     echo "No se instalará Discord"
@@ -182,7 +182,7 @@ else
     pacman -S --noconfirm discord
 fi
 
-read -p 'Quieres instalar Wine? [y/N]' pWine
+read -p "Quieres instalar Wine? [y/N]" pWine
 if ! [ $pWine = 'y' ] && ! [ $pWine = 'Y' ]
 then
     echo "No se instalará Wine"
@@ -191,7 +191,7 @@ else
     pacman -S --noconfirm wine-staging nvidia-dkms nvidia-utils lib32-nvidia-utils nvidia-settings vulkan-icd-loader lib32-vulkan-icd-loader giflib lib32-giflib libpng lib32-libpng libldap lib32-libldap gnutls lib32-gnutls mpg123 lib32-mpg123 openal lib32-openal v4l-utils lib32-v4l-utils libpulse lib32-libpulse libgpg-error lib32-libgpg-error alsa-plugins lib32-alsa-plugins alsa-lib lib32-alsa-lib libjpeg-turbo lib32-libjpeg-turbo sqlite lib32-sqlite libxcomposite lib32-libxcomposite libxinerama lib32-libgcrypt libgcrypt lib32-libxinerama ncurses lib32-ncurses opencl-icd-loader lib32-opencl-icd-loader libxslt lib32-libxslt libva lib32-libva gtk3 lib32-gtk3 gst-plugins-base-libs lib32-gst-plugins-base-libs vulkan-icd-loader lib32-vulkan-icd-loader
 fi
 
-read -p 'Quieres instalar Lutris? [y/N]' pLutris
+read -p "Quieres instalar Lutris? [y/N]" pLutris
 if ! [ $pLutris = 'y' ] && ! [ $pLutris = 'Y' ]
 then
     echo "No se instalará Lutris"
