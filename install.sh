@@ -8,10 +8,12 @@ timedatectl set-ntp true
 
 #Información particionado
 echo "A continuación se particionará el disco de la siguiente manera:"
+echo ""
 echo "1 - 512Mib se montará en /boot/efi"
 echo "2 - 2GiB se utilizará como swap"
 echo "3 - 40Gib se montará en /"
 echo "4 - el resto del disco se montará en /home"
+echo ""
 read -p 'Continuar? [y/N]: ' fsok
 if ! [ $fsok = 'y' ] && ! [ $fsok = 'Y' ]
 then 
@@ -19,6 +21,7 @@ then
     exit
 fi
 
+echo ""
 echo "Discos detectados:"
 lsblk
 echo ""
@@ -74,6 +77,7 @@ mkdir /mnt/home
 mount /dev/${TARGET}4 /mnt/home
 
 echo "Particiones creadas:"
+echo ""
 lsblk /dev/$TARGET
 echo ""
 echo "Las particiones se han creado correctamente. Pulsa cualquier tecla para empezar la instalación."
@@ -92,6 +96,8 @@ cp -rfv post-install.sh /mnt
 chmod a+x /mnt/post-install.sh
 
 # Chroot into new system
+echo ""
+echo "La instalación del sistema base ha finalizado correctamente."
 echo "Vas a entrar como root en tu nuevo Arch Linux, una vez dentro ejecuta ./post-install.sh para continuar con la instalación."
 echo "Pulsa cualquier tecla para continuar."
 read tmpvar
