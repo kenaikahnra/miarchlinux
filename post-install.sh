@@ -83,7 +83,7 @@ do
             ;;
         4)
             echo "Instalando Mate"
-            pacman -S --noconfirm mate
+            pacman -S --noconfirm mate mate-terminal pluma
             break
             ;;
         5)
