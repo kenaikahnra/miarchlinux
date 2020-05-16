@@ -1,5 +1,6 @@
 #!/bin/bash
 
+clear
 echo "Configurador de Arch de Gaizka"
 
 #Establecer zona horaria
@@ -13,10 +14,11 @@ echo "LANG=es_ES.UTF-8" >> /etc/locale.conf
 echo "KEYMAP=ES" >> /etc/vconsole.conf
 
 # Set hostname
-echo "ArchPc" >> /etc/hostname
+read -p "Escribe el nombre que utilizaras para tu PC: " pPC
+echo "$pPC" >> /etc/hostname
 echo "127.0.0.1 localhost" >> /etc/hosts
 echo "::1 localhost" >> /etc/hosts
-echo "127.0.1.1 ArchPc.localdomain  ArchPc" >> /etc/hosts
+echo "127.0.1.1 ${pPC}.localdomain  $pPC" >> /etc/hosts
 
 # Set root password
 echo "Escribe el password para el usuario root:"
@@ -44,6 +46,7 @@ passwd $USER
 #Actualizar repositorios
 reflector -c "ES" -f 12 -l 10 -n 12 --save /etc/pacman.d/mirrorlist
 
+echo ""
 echo "Selección del entorno de escritorio:"
 echo "1.- Kde"
 echo "2.- Gnome"
@@ -91,6 +94,7 @@ do
     esac
 done
 
+echo ""
 echo "Selección del gestor de inicio de sesión:"
 echo "1.- Sddm (Kde)"
 echo "2.- Gdm (Gnome)"
@@ -122,7 +126,7 @@ do
         4)
             echo "Instalando Lightdm"
             pacman -S --noconfirm lightdm lightdm-gtk-greeter
-            echo "greeter-session=lightdm-deepin-greeter" >> /etc/lightdm/lightdm.conf
+            sed -i 's/#greeter-session=example-gtk-gnome/greeter-session=lightdm-deepin-greeter/g' /etc/lightdm/lightdm.conf
             systemctl enable lightdm.service
             break
             ;;
