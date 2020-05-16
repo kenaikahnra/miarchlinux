@@ -1,11 +1,12 @@
 #!/bin/bash
 
+clear
 echo "Instalador de Arch de Gaizka"
-
+echo ""
 #Actualizar el reloj del sistema
 timedatectl set-ntp true
 
-# Filesystem mount warning
+#Información particionado
 echo "A continuación se particionará el disco de la siguiente manera:"
 echo "1 - 512Mib se montará en /boot/efi"
 echo "2 - 2GiB se utilizará como swap"
@@ -95,14 +96,13 @@ read tmpvar
 arch-chroot /mnt
 
 # Finish
+clear
 echo "Si post-install.sh se ha ejecutado correctamente, ahora tienes instalado un sistema Arch linux completamente funcional."
 echo "Lo unico que falta es reiniciar en tu nuevo sistema."
-echo "Una vez que reinicies recuerda instalar el AUR Helper Yay y gamemode ejecutando"
+echo "Una vez que reinicies recuerda instalar el AUR Helper Yay y gamemode ejecutando:"
 echo "git clone https://aur.archlinux.org/yay-git.git"
 echo "cd yay-git"
 echo "makepkg -si"
 echo "yay gamemode lib32-gamemode"
 echo "Recuerda tambien eliminar el fichero post-install.sh de la carpeta /root"
-echo "Pulsa cualquier tecla para reiniciar or Ctrl+C para cancelar..."
-read tmpvar
-reboot
+echo "Ya puedes reiniciar el sistema y disfrutar de la experiencia de Arch Linux."
