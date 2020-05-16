@@ -15,6 +15,7 @@ echo "LANG=es_ES.UTF-8" >> /etc/locale.conf
 echo "KEYMAP=ES" >> /etc/vconsole.conf
 
 # Set hostname
+echo ""
 read -p "Escribe el nombre que utilizaras para tu PC: " pPC
 echo "$pPC" >> /etc/hostname
 echo "127.0.0.1 localhost" >> /etc/hosts
@@ -22,12 +23,14 @@ echo "::1 localhost" >> /etc/hosts
 echo "127.0.1.1 ${pPC}.localdomain  $pPC" >> /etc/hosts
 
 # Set root password
+echo ""
 echo "Escribe el password para el usuario root:"
 passwd
 
 # Install bootloader
 echo ""
 echo "Discos detectados:"
+echo ""
 lsblk
 echo ""
 read -p "Escribe el nombre del disco donde se instalará GRUB: " TARGET
@@ -38,6 +41,7 @@ os-prober
 grub-mkconfig -o /boot/grub/grub.cfg
 
 # Create new user
+echo ""
 read -p "Escribe el nombre del nuevo usuario: " USER
 useradd -m -g users -G wheel -s /bin/bash $USER
 sed --in-place 's/^#\s*\(%wheel\s\+ALL=(ALL)\s\+NOPASSWD:\s\+ALL\)/\1/' /etc/sudoers
@@ -49,15 +53,18 @@ reflector -c "ES" -f 12 -l 10 -n 12 --save /etc/pacman.d/mirrorlist
 
 echo ""
 echo "Selección del entorno de escritorio:"
+echo ""
 echo "1.- Kde"
 echo "2.- Gnome"
 echo "3.- Cinnamon"
 echo "4.- Mate"
 echo "5.- Deepin"
 echo "6.- LXDE"
+echo ""
 while :
 do
     read -p "Qué escritorio quieres instalar? " pEscritorio
+    echo ""
     case $pEscritorio in
         1)
             echo "Instalando Kde"
@@ -97,14 +104,17 @@ done
 
 echo ""
 echo "Selección del gestor de inicio de sesión:"
+echo ""
 echo "1.- Sddm (Kde)"
 echo "2.- Gdm (Gnome)"
 echo "3.- Lightdm (Cinnamon/Mate)"
 echo "4.- Lightdm (Deepin)"
 echo "5.- LXdm (LXDE)"
+echo ""
 while :
 do
     read -p "Qué gestor de inicio de sesión quieres instalar? " pGestor
+    echo ""
     case $pGestor in
         1)
             echo "Instalando Sddm"
@@ -143,12 +153,16 @@ do
     esac
 done
 
+echo ""
 echo "Selección del navegador:"
+echo ""
 echo "1.- Firefox"
 echo "2.- Chromium"
+echo ""
 while :
 do
     read -p "Qué navegador quieres instalar? " pNavegador
+    echo ""
     case $pNavegador in
         1)
             echo "Instalando Firefox"
@@ -170,6 +184,7 @@ done
 sed -i "/\[multilib\]/,/Include/"'s/^#//' /etc/pacman.conf
 pacman -Syy
 
+echo ""
 read -p "Quieres instalar bluetooth? [y/N]" pBluetooth
 if ! [ $pBluetooth = 'y' ] && ! [ $pBluetooth = 'Y' ]
 then
@@ -179,6 +194,7 @@ else
     pacman -S --noconfirm bluez bluez-utils 
 fi
 
+echo ""
 read -p "Quieres instalar Discord? [y/N]" pDiscord
 if ! [ $pDiscord = 'y' ] && ! [ $pDiscord = 'Y' ]
 then
@@ -188,6 +204,7 @@ else
     pacman -S --noconfirm discord
 fi
 
+echo ""
 read -p "Quieres instalar Wine? [y/N]" pWine
 if ! [ $pWine = 'y' ] && ! [ $pWine = 'Y' ]
 then
@@ -197,6 +214,7 @@ else
     pacman -S --noconfirm wine-staging nvidia-dkms nvidia-utils lib32-nvidia-utils nvidia-settings vulkan-icd-loader lib32-vulkan-icd-loader giflib lib32-giflib libpng lib32-libpng libldap lib32-libldap gnutls lib32-gnutls mpg123 lib32-mpg123 openal lib32-openal v4l-utils lib32-v4l-utils libpulse lib32-libpulse libgpg-error lib32-libgpg-error alsa-plugins lib32-alsa-plugins alsa-lib lib32-alsa-lib libjpeg-turbo lib32-libjpeg-turbo sqlite lib32-sqlite libxcomposite lib32-libxcomposite libxinerama lib32-libgcrypt libgcrypt lib32-libxinerama ncurses lib32-ncurses opencl-icd-loader lib32-opencl-icd-loader libxslt lib32-libxslt libva lib32-libva gtk3 lib32-gtk3 gst-plugins-base-libs lib32-gst-plugins-base-libs vulkan-icd-loader lib32-vulkan-icd-loader
 fi
 
+echo ""
 read -p "Quieres instalar Lutris? [y/N]" pLutris
 if ! [ $pLutris = 'y' ] && ! [ $pLutris = 'Y' ]
 then
@@ -212,4 +230,5 @@ systemctl enable NetworkManager.service
 #Modificar swappiness
 echo "vm.swappiness=10" >> /etc/sysctl.d/99-swappiness.conf
 
+echo ""
 echo "Configuration completada. Ya puedes salir de chroot, teclea exit"
