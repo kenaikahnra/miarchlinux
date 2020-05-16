@@ -2,6 +2,7 @@
 
 clear
 echo "Configurador de Arch de Gaizka"
+echo ""
 
 #Establecer zona horaria
 ln -sf /usr/share/zoneinfo/Europe/Madrid /etc/localtime
