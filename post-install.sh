@@ -12,7 +12,7 @@ hwclock --systohc
 sed -i '/es_ES.UTF-8/s/^#//g' /etc/locale.gen
 locale-gen
 echo "LANG=es_ES.UTF-8" >> /etc/locale.conf
-echo "KEYMAP=ES" >> /etc/vconsole.conf
+echo "KEYMAP=es" >> /etc/vconsole.conf
 
 # Set hostname
 echo ""
