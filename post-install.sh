@@ -23,6 +23,7 @@ echo "Escribe el password para el usuario root:"
 passwd
 
 # Install bootloader
+echo ""
 echo "Discos detectados:"
 lsblk
 echo ""
@@ -52,7 +53,7 @@ echo "5.- Deepin"
 echo "6.- LXDE"
 while :
 do
-    read -p "Qué escritorio quieres instalar?" pEscritorio
+    read -p "Qué escritorio quieres instalar? " pEscritorio
     case $pEscritorio in
         1)
             echo "Instalando Kde"
@@ -98,7 +99,7 @@ echo "4.- Lightdm (Deepin)"
 echo "5.- LXdm (LXDE)"
 while :
 do
-    read -p "Qué gestor de inicio de sesión quieres instalar?" pGestor
+    read -p "Qué gestor de inicio de sesión quieres instalar? " pGestor
     case $pGestor in
         1)
             echo "Instalando Sddm"
@@ -142,7 +143,7 @@ echo "1.- Firefox"
 echo "2.- Chromium"
 while :
 do
-    read -p "Qué navegador quieres instalar?" pNavegador
+    read -p "Qué navegador quieres instalar? " pNavegador
     case $pNavegador in
         1)
             echo "Instalando Firefox"
