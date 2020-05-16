@@ -13,7 +13,7 @@ echo ""
 lsblk
 echo ""
 read -p "Escribe el nombre del disco donde quieres instalar Arch linux (todo el contenido será borrado): " TARGET
-read -p 'Estas seguro de que deseas borrar todo el contenido de /dev/$TARGET? [y/N]: ' pBorrado
+read -p 'Estas seguro de que deseas borrar todo el contenido de /dev/${TARGET}? [y/N]: ' pBorrado
 if ! [ $pBorrado = 'y' ] && ! [ $pBorrado = 'Y' ]
 then 
     echo "Saliendo del instalador."
