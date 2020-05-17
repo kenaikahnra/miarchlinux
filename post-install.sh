@@ -69,7 +69,7 @@ do
     case $pEscritorio in
         1)
             echo "Instalando Kde"
-            pacman -S --noconfirm plasma-desktop user-manager kscreen konsole dolphin kate breeze-gtk kde-gtk-config libappindicator-gtk3 plasma-nm plasma-pa ark okular kinfocenter kwalletmanager transmission-qt gwenview kipi-plugins spectacle kcolorchooser vlc konversation partitionmanager sddm sddm-kcm
+            pacman -S --noconfirm plasma-desktop user-manager kscreen konsole dolphin kate breeze-gtk kde-gtk-config libappindicator-gtk3 plasma-nm plasma-pa ark okular kinfocenter kwalletmanager transmission-qt gwenview kipi-plugins spectacle kcolorchooser vlc konversation partitionmanager sddm sddm-kcm kdialog
             systemctl enable sddm.service
             break
             ;;
