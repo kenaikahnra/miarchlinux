@@ -232,7 +232,7 @@ then
     echo "No se instalará Gamemode"
 else
     echo "Instalando Gamemode"
-    yay -S --noconfirm gamemode lib32-gamemode
+    yay -S --noconfirm gamemode-git lib32-gamemode-git
 fi
 
 # Enable services
