@@ -172,7 +172,19 @@ sed -i "/\[multilib\]/,/Include/"'s/^#//' /etc/pacman.conf
 pacman -Syy
 
 echo ""
-read -p "Quieres instalar bluetooth? [y/N]" pBluetooth
+read -p "Quieres instalar Yay? [y/N] " pYay
+if ! [ $pYay = 'y' ] && ! [ $pYay = 'Y' ]
+then
+    echo "No se instalará Yay"
+else
+    echo "Instalando Yay"
+    wget https://raw.github.com/kenaikahnra/miarchlinux/master/yay-9.4.7-1-x86_64.pkg.tar.xz
+    pacman -U --noconfirm yay-9.4.7-1-x86_64.pkg.tar.xz
+    rm -rf yay-9.4.7-1-x86_64.pkg.tar.xz
+fi
+
+echo ""
+read -p "Quieres instalar bluetooth? [y/N] " pBluetooth
 if ! [ $pBluetooth = 'y' ] && ! [ $pBluetooth = 'Y' ]
 then
     echo "No se instalará Bluetooth"
@@ -182,7 +194,7 @@ else
 fi
 
 echo ""
-read -p "Quieres instalar Discord? [y/N]" pDiscord
+read -p "Quieres instalar Discord? [y/N] " pDiscord
 if ! [ $pDiscord = 'y' ] && ! [ $pDiscord = 'Y' ]
 then
     echo "No se instalará Discord"
@@ -192,7 +204,7 @@ else
 fi
 
 echo ""
-read -p "Quieres instalar Wine? [y/N]" pWine
+read -p "Quieres instalar Wine? [y/N] " pWine
 if ! [ $pWine = 'y' ] && ! [ $pWine = 'Y' ]
 then
     echo "No se instalará Wine"
@@ -202,13 +214,23 @@ else
 fi
 
 echo ""
-read -p "Quieres instalar Lutris? [y/N]" pLutris
+read -p "Quieres instalar Lutris? [y/N] " pLutris
 if ! [ $pLutris = 'y' ] && ! [ $pLutris = 'Y' ]
 then
     echo "No se instalará Lutris"
 else
     echo "Instalando Lutris"
     pacman -S --noconfirm lutris
+fi
+
+echo ""
+read -p "Quieres instalar Gamemode? [y/N] " pGamemode
+if ! [ $pGamemode = 'y' ] && ! [ $pGamemode = 'Y' ]
+then
+    echo "No se instalará Gamemode"
+else
+    echo "Instalando Gamemode"
+    yay -S --noconfirm gamemode lib32-gamemode
 fi
 
 # Enable services
