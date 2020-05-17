@@ -178,10 +178,11 @@ then
     echo "No se instalará Yay"
 else
     echo "Instalando Yay"
-    sudo pacman -S --noconfirm wget
+    pacman -S --noconfirm wget
     wget https://raw.github.com/kenaikahnra/miarchlinux/master/yay-9.4.7-1-x86_64.pkg.tar.xz
     pacman -U --noconfirm yay-9.4.7-1-x86_64.pkg.tar.xz
     rm -rf yay-9.4.7-1-x86_64.pkg.tar.xz
+    pacman -Rsn --noconfirm wget
 fi
 
 echo ""
