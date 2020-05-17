@@ -67,69 +67,31 @@ do
     case $pEscritorio in
         1)
             echo "Instalando Kde"
-            pacman -S --noconfirm plasma-desktop user-manager kscreen konsole dolphin kate breeze-gtk kde-gtk-config libappindicator-gtk3 plasma-nm plasma-pa ark okular kinfocenter kwalletmanager transmission-qt gwenview kipi-plugins spectacle kcolorchooser vlc konversation partitionmanager
+            pacman -S --noconfirm plasma-desktop user-manager kscreen konsole dolphin kate breeze-gtk kde-gtk-config libappindicator-gtk3 plasma-nm plasma-pa ark okular kinfocenter kwalletmanager transmission-qt gwenview kipi-plugins spectacle kcolorchooser vlc konversation partitionmanager sddm sddm-kcm
+            systemctl enable sddm.service
             break
             ;;
         2)
             echo "Instalando Gnome"
             pacman -S --noconfirm gnome
-            break
-            ;;
-        3)
-            echo "Instalando Cinnamon"
-            pacman -S --noconfirm cinnamon
-            break
-            ;;
-        4)
-            echo "Instalando Mate"
-            pacman -S --noconfirm mate mate-terminal pluma
-            break
-            ;;
-        5)
-            echo "Instalando Deepin"
-            pacman -S --noconfirm deepin
-            break
-            ;;
-        *)
-            echo "Opción no válida, inténtalo de nuevo."
-            ;;
-    esac
-done
-
-echo ""
-echo "Selección del gestor de inicio de sesión:"
-echo ""
-echo "1.- Sddm (Kde)"
-echo "2.- Gdm (Gnome)"
-echo "3.- Lightdm (Cinnamon/Mate)"
-echo "4.- Lightdm (Deepin)"
-echo ""
-while :
-do
-    read -p "Qué gestor de inicio de sesión quieres instalar? " pGestor
-    echo ""
-    case $pGestor in
-        1)
-            echo "Instalando Sddm"
-            pacman -S --noconfirm sddm sddm-kcm
-            systemctl enable sddm.service
-            break
-            ;;
-        2)
-            echo "Instalando Gdm"
-            pacman -S --noconfirm gdm
             systemctl enable gdm.service
             break
             ;;
         3)
-            echo "Instalando Lightdm"
-            pacman -S --noconfirm lightdm lightdm-gtk-greeter
+            echo "Instalando Cinnamon"
+            pacman -S --noconfirm cinnamon lightdm lightdm-gtk-greeter
             systemctl enable lightdm.service
             break
             ;;
         4)
-            echo "Instalando Lightdm"
-            pacman -S --noconfirm lightdm lightdm-gtk-greeter
+            echo "Instalando Mate"
+            pacman -S --noconfirm mate mate-terminal pluma lightdm lightdm-gtk-greeter
+            systemctl enable lightdm.service
+            break
+            ;;
+        5)
+            echo "Instalando Deepin"
+            pacman -S --noconfirm deepin lightdm lightdm-gtk-greeter
             sed -i 's/#greeter-session=example-gtk-gnome/greeter-session=lightdm-deepin-greeter/g' /etc/lightdm/lightdm.conf
             systemctl enable lightdm.service
             break
