@@ -120,12 +120,6 @@ arch-chroot /mnt
 clear
 echo "Si post-install.sh se ha ejecutado correctamente, ahora tienes instalado un sistema Arch linux completamente funcional."
 echo ""
-echo "Una vez que reinicies recuerda instalar el AUR Helper Yay y gamemode ejecutando:"
-echo "git clone https://aur.archlinux.org/yay-git.git"
-echo "cd yay-git"
-echo "makepkg -si"
-echo "yay gamemode lib32-gamemode"
-echo ""
-echo "Recuerda tambien eliminar el fichero post-install.sh de la carpeta /root"
 echo "Ya puedes reiniciar el sistema y disfrutar de la experiencia de Arch Linux."
+echo "Recuerda eliminar el fichero post-install.sh de la carpeta /"
 echo ""
