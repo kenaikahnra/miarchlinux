@@ -28,12 +28,14 @@ echo "Escribe el password para el usuario root:"
 passwd
 
 # Install bootloader
+#echo ""
+#echo "Discos detectados:"
+#echo ""
+#lsblk
+#echo ""
+#read -p "Escribe el nombre del disco donde se instalará GRUB: " TARGET
 echo ""
-echo "Discos detectados:"
-echo ""
-lsblk
-echo ""
-read -p "Escribe el nombre del disco donde se instalará GRUB: " TARGET
+echo "Instalando GRUB en /dev/${TARGET}1"
 mkdir /boot/efi
 mount /dev/${TARGET}1 /boot/efi
 grub-install --target=x86_64-efi --bootloader-id=GRUB --efi-directory=/boot/efi --removable
