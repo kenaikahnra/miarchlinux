@@ -47,6 +47,7 @@ do
     sed --in-place 's/^#\s*\(%wheel\s\+ALL=(ALL)\s\+NOPASSWD:\s\+ALL\)/\1/' /etc/sudoers
     echo "Escribe el password para el usuario $USER:"
     passwd $USER
+    echo ""
     read -p "El usuario se ha creado correctamente, quieres crear más usuarios? [y/N] " pUsuario
     if ! [ $pUsuario = 'y' ] && ! [ $pUsuario = 'Y' ]
     then
