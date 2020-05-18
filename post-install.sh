@@ -195,15 +195,8 @@ else
 fi
 
 echo ""
-read -p "Quieres instalar Gamemode? [y/N] " pGamemode
-if ! [ $pGamemode = 'y' ] && ! [ $pGamemode = 'Y' ]
-then
-    echo "No se instalará Gamemode"
-else
-    echo "Instalando Gamemode"
-    yay -S --noconfirm gamemode-git lib32-gamemode-git
-fi
-
+echo "La instalación de paquetes ha finalizado."
+echo ""
 # Enable services
 systemctl enable NetworkManager.service
 
