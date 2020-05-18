@@ -28,12 +28,6 @@ echo "Escribe el password para el usuario root:"
 passwd
 
 # Install bootloader
-#echo ""
-#echo "Discos detectados:"
-#echo ""
-#lsblk
-#echo ""
-#read -p "Escribe el nombre del disco donde se instalará GRUB: " TARGET
 echo ""
 echo "Instalando GRUB en /dev/${TARGET}1"
 mkdir /boot/efi
@@ -42,13 +36,23 @@ grub-install --target=x86_64-efi --bootloader-id=GRUB --efi-directory=/boot/efi 
 os-prober
 grub-mkconfig -o /boot/grub/grub.cfg
 
-# Create new user
+# Crear usuarios
 echo ""
-read -p "Escribe el nombre del nuevo usuario: " USER
-useradd -m -g users -G wheel -s /bin/bash $USER
-sed --in-place 's/^#\s*\(%wheel\s\+ALL=(ALL)\s\+NOPASSWD:\s\+ALL\)/\1/' /etc/sudoers
-echo "Escribe el password para el usuario $USER:"
-passwd $USER
+echo "Creación de usuarios:"
+for (( ; ; ))
+do
+    echo ""
+    read -p "Escribe el nombre del nuevo usuario: " USER
+    useradd -m -g users -G wheel -s /bin/bash $USER
+    sed --in-place 's/^#\s*\(%wheel\s\+ALL=(ALL)\s\+NOPASSWD:\s\+ALL\)/\1/' /etc/sudoers
+    echo "Escribe el password para el usuario $USER:"
+    passwd $USER
+    read -p "El usuario se ha creado correctamente, quieres crear más usuarios? [y/N] " pUsuario
+    if ! [ $pUsuario = 'y' ] && ! [ $pUsuario = 'Y' ]
+    then
+        break
+    fi
+done
 
 #Actualizar repositorios
 reflector -c "ES" -f 12 -l 10 -n 12 --save /etc/pacman.d/mirrorlist
