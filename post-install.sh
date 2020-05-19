@@ -98,7 +98,7 @@ do
             ;;
         5)
             echo "Instalando Deepin"
-            pacman -S --noconfirm deepin lightdm lightdm-gtk-greeter
+            pacman -S --noconfirm deepin lightdm lightdm-gtk-greeter deepin-terminal deepin-editor
             sed -i 's/#greeter-session=example-gtk-gnome/greeter-session=lightdm-deepin-greeter/g' /etc/lightdm/lightdm.conf
             systemctl enable lightdm.service
             break
