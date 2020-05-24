@@ -58,6 +58,10 @@ done
 #Actualizar repositorios
 reflector -c "ES" -f 12 -l 10 -n 12 --save /etc/pacman.d/mirrorlist
 
+#Activar multilib
+sed -i "/\[multilib\]/,/Include/"'s/^#//' /etc/pacman.conf
+pacman -Syy
+
 echo ""
 echo "Selección del entorno de escritorio:"
 echo ""
@@ -114,6 +118,7 @@ echo "Selección del navegador:"
 echo ""
 echo "1.- Firefox"
 echo "2.- Chromium"
+echo "3.- Opera"
 echo ""
 while :
 do
@@ -130,15 +135,16 @@ do
             pacman -S --noconfirm chromium
             break
             ;;
+        3)
+            echo "Instalando Opera"
+            pacman -S --noconfirm opera
+            break
+            ;;
         *)
             echo "Opción no válida, inténtalo de nuevo."
             ;;
     esac
 done
-
-#Activar multilib
-sed -i "/\[multilib\]/,/Include/"'s/^#//' /etc/pacman.conf
-pacman -Syy
 
 echo ""
 read -p "Quieres instalar Yay? [y/N] " pYay
