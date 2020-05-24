@@ -26,6 +26,9 @@ echo "127.0.1.1 ${pPC}.localdomain  $pPC" >> /etc/hosts
 echo ""
 echo "Escribe el password para el usuario root:"
 passwd
+while [[ $? -ne 0 ]]; do
+    passwd
+done
 
 # Install bootloader
 echo ""
