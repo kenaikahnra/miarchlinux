@@ -41,8 +41,8 @@ fi
 
 echo ""
 
-
 # Crear particiones
+echo "Creando particiones..."
 sed -e 's/\s*\([\+0-9a-zA-Z]*\).*/\1/' << EOF | fdisk /dev/$TARGET
   o # clear the in memory partition table
   n # new partition
@@ -71,7 +71,9 @@ sed -e 's/\s*\([\+0-9a-zA-Z]*\).*/\1/' << EOF | fdisk /dev/$TARGET
   w # write the partition table
   q # and we're done
 EOF
+echo ""
 
+echo "Formateando particiones..."
 #Formatear partición /boot
 mkfs.fat -F32 /dev/${TARGET}1
 
@@ -82,6 +84,8 @@ swapon /dev/${TARGET}2
 #Formatear partición / y /home
 mkfs.ext4 -F /dev/${TARGET}3
 mkfs.ext4 -F /dev/${TARGET}4
+
+echo ""
 
 #Montar partición /
 mount /dev/${TARGET}3 /mnt
@@ -96,20 +100,25 @@ lsblk /dev/$TARGET
 echo ""
 echo "Las particiones se han creado correctamente. Pulsa cualquier tecla para empezar la instalación."
 read tmpvar
+echo ""
 
 # Install Arch Linux
+echo "Instalando el sistema base..."
 pacman -S --noconfirm reflector
 reflector -c "ES" -f 12 -l 10 -n 12 --save /etc/pacman.d/mirrorlist
 pacstrap /mnt base base-devel linux linux-firmware grub os-prober efibootmgr nano intel-ucode xorg xorg-xinit nvidia nvidia-utils networkmanager ntfs-3g git xdg-user-dirs reflector
+echo ""
 
 #Generar fichero fstab
+echo "Generando fichero fstab"
 genfstab -U /mnt >> /mnt/etc/fstab
+echo ""
 
-# Copy post-install system configuration script to new /root
+# Copiar fichero post-install.sh al nuevo /root
 cp -rfv post-install.sh /mnt
 chmod a+x /mnt/post-install.sh
 
-# Chroot into new system
+# Entrar como root al nuevo sistema
 echo ""
 echo "La instalación del sistema base ha finalizado correctamente."
 echo "Vas a entrar como root en tu nuevo Arch Linux, una vez dentro ejecuta ./post-install.sh para continuar con la instalación."
