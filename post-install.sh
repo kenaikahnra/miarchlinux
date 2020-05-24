@@ -73,6 +73,7 @@ echo ""
 #Activar multilib
 echo "Activando el repositorio [multilib]..."
 sed -i "/\[multilib\]/,/Include/"'s/^#//' /etc/pacman.conf
+echo ""
 pacman -Syy
 echo ""
 
