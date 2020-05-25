@@ -50,6 +50,7 @@ do
     echo ""
     read -p "Escribe el nombre del nuevo usuario: " pUser
     useradd -m -g users -G wheel -s /bin/bash $pUser
+    echo ""
     echo "Escribe el password para el usuario $pUser:"
     passwd $pUser
     while [[ $? -ne 0 ]]; do
@@ -57,10 +58,10 @@ do
     done
     echo ""
     sed --in-place 's/^#\s*\(%wheel\s\+ALL=(ALL)\s\+NOPASSWD:\s\+ALL\)/\1/' /etc/sudoers
-    echo ""
     read -p "El usuario se ha creado correctamente, quieres crear más usuarios? [s/n] " pUsuario
     if ! [ $pUsuario = 's' ] && ! [ $pUsuario = 'S' ]
     then
+        echo ""
         break
     fi
 done
