@@ -145,6 +145,7 @@ echo ""
 
 # Install Arch Linux
 echo "Instalando el sistema base..."
+pacman -Syy
 pacman -S --noconfirm reflector
 reflector -c "ES" -f 12 -l 10 -n 12 --save /etc/pacman.d/mirrorlist
 pacstrap /mnt base base-devel linux linux-firmware grub os-prober efibootmgr nano intel-ucode xorg xorg-xinit networkmanager ntfs-3g git xdg-user-dirs reflector
@@ -155,6 +156,7 @@ if [ $pNvidia = 's' ] && ! [ $pNvidia = 'S' ]
 then 
     echo "Instalando drivers de nvidia..."
     pacstrap /mnt nvidia nvidia-utils
+    echo ""
 fi
 
 #Generar fichero fstab
