@@ -49,14 +49,6 @@ for (( ; ; ))
 do
     echo ""
     read -p "Escribe el nombre del nuevo usuario: " pUser
-    
-    #Si no se ha formateado la home comprobamos si la carpeta de usuario ya existe
-    if [[ -d "/home/${pUser}" ]]
-    then
-        echo "La carpeta /home/${pUser} ya existe, se moverá a /home/${pUser}.old."
-        mv /home/${pUser} /home/${pUser}.old
-    fi
-    
     useradd -m -g users -G wheel -s /bin/bash $pUser
     echo "Escribe el password para el usuario $pUser:"
     passwd $pUser
