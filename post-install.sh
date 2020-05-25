@@ -133,8 +133,7 @@ do
             ;;
         7)
             echo "Instalando Ukui"
-            pacman -S --noconfirm lightdm ukui
-            sed -i 's/#greeter-session=example-gtk-gnome/greeter-session=ukui-greeter/g' /etc/lightdm/lightdm.conf
+            pacman -S --noconfirm ukui
             systemctl enable lightdm.service
             break
             ;;
