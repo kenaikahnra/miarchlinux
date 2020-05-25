@@ -44,18 +44,27 @@ grub-mkconfig -o /boot/grub/grub.cfg
 echo ""
 
 # Crear usuarios
-echo "Creación de usuarios:"
+echo "Creación de usuarios con permisos de administrador:"
 for (( ; ; ))
 do
     echo ""
-    read -p "Escribe el nombre del nuevo usuario: " USER
-    useradd -m -g users -G wheel -s /bin/bash $USER
-    sed --in-place 's/^#\s*\(%wheel\s\+ALL=(ALL)\s\+NOPASSWD:\s\+ALL\)/\1/' /etc/sudoers
-    echo "Escribe el password para el usuario $USER:"
-    passwd $USER
+    read -p "Escribe el nombre del nuevo usuario: " pUser
+    
+    #Si no se ha formateado la home comprobamos si la carpeta de usuario ya existe
+    if [[ -d "/home/${pUser}" ]]
+    then
+        echo "La carpeta /home/${pUser} ya existe, se moverá a /home/${pUser}.old."
+        mv /home/${pUser} /home/${pUser}.old
+    fi
+    
+    useradd -m -g users -G wheel -s /bin/bash $pUser
+    echo "Escribe el password para el usuario $pUser:"
+    passwd $pUser
     while [[ $? -ne 0 ]]; do
-      passwd ${username}
+      passwd $pUser
     done
+    echo ""
+    sed --in-place 's/^#\s*\(%wheel\s\+ALL=(ALL)\s\+NOPASSWD:\s\+ALL\)/\1/' /etc/sudoers
     echo ""
     read -p "El usuario se ha creado correctamente, quieres crear más usuarios? [s/n] " pUsuario
     if ! [ $pUsuario = 's' ] && ! [ $pUsuario = 'S' ]
@@ -173,10 +182,7 @@ echo ""
 
 #Instalar Yay
 read -p "Quieres instalar Yay? [s/n] " pYay
-if ! [ $pYay = 's' ] && ! [ $pYay = 'S' ]
-then
-    echo "No se instalará Yay"
-else
+if [ $pYay = 's' ] && [ $pYay = 'S' ]
     echo "Instalando Yay"
     pacman -S --noconfirm wget
     wget https://raw.github.com/kenaikahnra/miarchlinux/master/yay-9.4.7-1-x86_64.pkg.tar.xz
@@ -188,10 +194,7 @@ echo ""
 
 #Instalar Bluetooth
 read -p "Quieres instalar bluetooth? [s/n] " pBluetooth
-if ! [ $pBluetooth = 's' ] && ! [ $pBluetooth = 'S' ]
-then
-    echo "No se instalará Bluetooth"
-else
+if [ $pBluetooth = 's' ] && [ $pBluetooth = 'S' ]
     echo "Instalando Bluetooth"
     pacman -S --noconfirm bluez bluez-utils 
 fi
@@ -199,10 +202,7 @@ echo ""
 
 #Instalar Discord
 read -p "Quieres instalar Discord? [s/n] " pDiscord
-if ! [ $pDiscord = 's' ] && ! [ $pDiscord = 'S' ]
-then
-    echo "No se instalará Discord"
-else
+if [ $pDiscord = 's' ] && [ $pDiscord = 'S' ]
     echo "Instalando Discord"
     pacman -S --noconfirm discord
 fi
@@ -210,10 +210,7 @@ echo ""
 
 #Instalar Wine
 read -p "Quieres instalar Wine? [s/n] " pWine
-if ! [ $pWine = 's' ] && ! [ $pWine = 'S' ]
-then
-    echo "No se instalará Wine"
-else
+if [ $pWine = 's' ] && [ $pWine = 'S' ]
     echo "Instalando Wine, Dxvk y sus dependencias"
     pacman -S --noconfirm wine-staging nvidia-dkms nvidia-utils lib32-nvidia-utils nvidia-settings vulkan-icd-loader lib32-vulkan-icd-loader giflib lib32-giflib libpng lib32-libpng libldap lib32-libldap gnutls lib32-gnutls mpg123 lib32-mpg123 openal lib32-openal v4l-utils lib32-v4l-utils libpulse lib32-libpulse libgpg-error lib32-libgpg-error alsa-plugins lib32-alsa-plugins alsa-lib lib32-alsa-lib libjpeg-turbo lib32-libjpeg-turbo sqlite lib32-sqlite libxcomposite lib32-libxcomposite libxinerama lib32-libgcrypt libgcrypt lib32-libxinerama ncurses lib32-ncurses opencl-icd-loader lib32-opencl-icd-loader libxslt lib32-libxslt libva lib32-libva gtk3 lib32-gtk3 gst-plugins-base-libs lib32-gst-plugins-base-libs vulkan-icd-loader lib32-vulkan-icd-loader
 fi
@@ -221,15 +218,11 @@ echo ""
 
 #Instalar Lutris
 read -p "Quieres instalar Lutris? [s/n] " pLutris
-if ! [ $pLutris = 's' ] && ! [ $pLutris = 'S' ]
-then
-    echo "No se instalará Lutris"
-else
+if [ $pLutris = 's' ] && [ $pLutris = 'S' ]
     echo "Instalando Lutris"
     pacman -S --noconfirm lutris
 fi
 echo ""
-
 
 echo "La instalación de paquetes ha finalizado."
 echo ""
