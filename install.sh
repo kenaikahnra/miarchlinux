@@ -21,7 +21,7 @@ echo ""
 echo "1.- Utilizar sistema automático de particionado"
 echo "2.- Utilizar las particiones actuales"
 echo ""
-while
+while :
 do
     read -p "Cómo deseas crear las particiones? " pParticionado
     echo ""
