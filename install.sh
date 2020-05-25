@@ -66,7 +66,7 @@ do
             n # new partition
             p # primary partition
             2 # partition number 2
-                # default, start immediately after preceding partition
+            # default, start immediately after preceding partition
             +2G # 8 GB swap partition
             n # new partition
             p # primary partition
