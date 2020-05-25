@@ -87,6 +87,7 @@ echo "3.- Cinnamon"
 echo "4.- Mate"
 echo "5.- Deepin"
 echo "6.- Budgie"
+echo "7.- Ukui"
 echo ""
 while :
 do
@@ -128,6 +129,13 @@ do
             echo "Instalando Budgie"
             pacman -S --noconfirm budgie-desktop gnome-terminal lightdm lightdm-gtk-greeter gnome-terminal gnome-control-center
             sed -i 's/#greeter-session=example-gtk-gnome/greeter-session=lightdm-gtk-greeter/g' /etc/lightdm/lightdm.conf
+            systemctl enable lightdm.service
+            break
+            ;;
+        7)
+            echo "Instalando Ukui"
+            pacman -S --noconfirm lightdm ukui
+            sed -i 's/#greeter-session=example-gtk-gnome/greeter-session=ukui-greeter/g' /etc/lightdm/lightdm.conf
             systemctl enable lightdm.service
             break
             ;;
