@@ -147,6 +147,7 @@ echo ""
 
 # Install Arch Linux
 echo "Instalando el sistema base..."
+echo ""
 pacman -Syy
 pacman -S --noconfirm reflector
 reflector -c "ES" -f 12 -l 10 -n 12 --save /etc/pacman.d/mirrorlist
