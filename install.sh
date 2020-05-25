@@ -170,6 +170,7 @@ cp -rfv post-install.sh /mnt
 chmod a+x /mnt/post-install.sh
 
 # Entrar como root al nuevo sistema
+time
 echo ""
 echo "La instalación del sistema base ha finalizado correctamente."
 echo "Vas a entrar como root en tu nuevo Arch Linux, una vez dentro ejecuta ./post-install.sh para continuar con la instalación."
