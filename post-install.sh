@@ -85,6 +85,7 @@ echo "2.- Gnome"
 echo "3.- Cinnamon"
 echo "4.- Mate"
 echo "5.- Deepin"
+echo "6.- Budgie"
 echo ""
 while :
 do
@@ -120,6 +121,12 @@ do
             pacman -S --noconfirm deepin lightdm lightdm-gtk-greeter deepin-terminal deepin-editor
             sed -i 's/#greeter-session=example-gtk-gnome/greeter-session=lightdm-deepin-greeter/g' /etc/lightdm/lightdm.conf
             systemctl enable lightdm.service
+            break
+            ;;
+        6)
+            echo "Instalando Budgie"
+            pacman -S --noconfirm budgie-desktop gnome-terminal gdm
+            systemctl enable gdm.service
             break
             ;;
         *)
