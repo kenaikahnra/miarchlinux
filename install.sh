@@ -147,8 +147,15 @@ echo ""
 echo "Instalando el sistema base..."
 pacman -S --noconfirm reflector
 reflector -c "ES" -f 12 -l 10 -n 12 --save /etc/pacman.d/mirrorlist
-pacstrap /mnt base base-devel linux linux-firmware grub os-prober efibootmgr nano intel-ucode xorg xorg-xinit nvidia nvidia-utils networkmanager ntfs-3g git xdg-user-dirs reflector
+pacstrap /mnt base base-devel linux linux-firmware grub os-prober efibootmgr nano intel-ucode xorg xorg-xinit networkmanager ntfs-3g git xdg-user-dirs reflector
 echo ""
+
+read -p "Quieres instalar los drivers propietarios de nvidia? [s/n]: " pNvidia
+if [ $pNvidia = 's' ] && ! [ $pNvidia = 'S' ]
+then 
+    echo "Instalando drivers de nvidia..."
+    pacstrap /mnt nvidia nvidia-utils
+fi
 
 #Generar fichero fstab
 echo "Generando fichero fstab"
