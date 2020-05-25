@@ -125,8 +125,9 @@ do
             ;;
         6)
             echo "Instalando Budgie"
-            pacman -S --noconfirm budgie-desktop gnome-terminal gdm
-            systemctl enable gdm.service
+            pacman -S --noconfirm budgie-desktop gnome-terminal lightdm lightdm-gtk-greeter gnome-terminal gnome-control-center
+            sed -i 's/#greeter-session=example-gtk-gnome/greeter-session=lightdm-gtk-greeter/g' /etc/lightdm/lightdm.conf
+            systemctl enable lightdm.service
             break
             ;;
         *)
