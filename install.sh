@@ -180,6 +180,7 @@ arch-chroot /mnt
 
 # Finish
 clear
+date
 echo "Si post-install.sh se ha ejecutado correctamente, ahora tienes instalado un sistema Arch linux completamente funcional."
 echo ""
 echo "Ya puedes reiniciar el sistema y disfrutar de la experiencia de Arch Linux."
