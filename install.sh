@@ -34,7 +34,7 @@ do
                 exit
             fi
             wipefs -a /dev/$TARGET &>/dev/null
-            read -p "Cuánto espacio (en GiB) quieres dedicar a la partición raiz? para el sistema operativo? " pEspacio
+            read -p "Cuánto espacio (en GiB) quieres dedicar a la partición raiz? " pEspacio
             
             #Información particionado
             echo ""
