@@ -64,7 +64,6 @@ do
         break
     fi
 done
-echo ""
 
 #Actualizar repositorios
 echo "Actualizando repositorios..."
