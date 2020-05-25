@@ -15,15 +15,15 @@ echo ""
 read -p "Escribe el nombre del disco donde quieres instalar Arch linux (todo el contenido será borrado): " TARGET
 export TARGET
 
-#Instalar navegador
+#Sistema de particionado
 echo "Creación de particiones:"
 echo ""
 echo "1.- Utilizar sistema automático de particionado"
 echo "2.- Utilizar las particiones actuales"
 echo ""
-while :
+while
 do
-    read -p "Qué navegador quieres instalar? " pParticionado
+    read -p "Cómo deseas crear las particiones? " pParticionado
     echo ""
     case $pParticionado in
         1)
