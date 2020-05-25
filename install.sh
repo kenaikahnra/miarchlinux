@@ -34,6 +34,7 @@ do
                 exit
             fi
             wipefs -a /dev/$TARGET &>/dev/null
+            echo ""
             read -p "Cuánto espacio (en GiB) quieres dedicar a la partición raiz? " pEspacio
             
             #Información particionado
@@ -85,8 +86,10 @@ do
             q # and we're done
 EOF
             echo ""
+            break
             ;;
         2)
+            echo ""
             break
             ;;
         *)
@@ -94,10 +97,9 @@ EOF
             ;;
     esac
 done
-echo ""
 
-echo "Formateando partición de arranque..."
 #Formatear partición /boot
+echo "Formateando partición de arranque..."
 mkfs.fat -F32 /dev/${TARGET}1
 echo ""
 
@@ -113,7 +115,6 @@ mkfs.ext4 -F /dev/${TARGET}3
 echo ""
 
 #Formatear /home
-
 if [ $pParticionado = '2' ]
 then
     read -p 'Deseas formatear la partición /home? [s/n]: ' pHome
