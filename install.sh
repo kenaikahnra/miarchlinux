@@ -153,7 +153,7 @@ pacstrap /mnt base base-devel linux linux-firmware grub os-prober efibootmgr nan
 echo ""
 
 read -p "Quieres instalar los drivers propietarios de nvidia? [s/n]: " pNvidia
-if [ $pNvidia = 's' ] || ! [ $pNvidia = 'S' ]
+if [ $pNvidia = 's' ] || [ $pNvidia = 'S' ]
 then 
     echo "Instalando drivers de nvidia..."
     pacstrap /mnt nvidia nvidia-utils
