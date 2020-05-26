@@ -181,9 +181,8 @@ arch-chroot /mnt
 
 # Finish
 clear
-date
-echo "Si post-install.sh se ha ejecutado correctamente, ahora tienes instalado un sistema Arch linux completamente funcional."
+rm -rf /mnt/root/post-install.sh
+echo "La instalación ha finalizado correctamente, ahora tienes instalado un sistema Arch linux completamente funcional."
 echo ""
 echo "Ya puedes reiniciar el sistema y disfrutar de la experiencia de Arch Linux."
-echo "Recuerda eliminar el fichero post-install.sh de la carpeta /"
 echo ""
