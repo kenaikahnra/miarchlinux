@@ -102,7 +102,7 @@ do
             ;;
         2)
             echo "Instalando Gnome"
-            pacman -S --noconfirm gnome
+            pacman -S --noconfirm gnome libappindicator-gtk3
             systemctl enable gdm.service
             break
             ;;
