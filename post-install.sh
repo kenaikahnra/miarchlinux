@@ -108,7 +108,7 @@ do
             ;;
         3)
             echo "Instalando Cinnamon"
-            pacman -S --noconfirm cinnamon lightdm lightdm-gtk-greeter gnome-terminal
+            pacman -S --noconfirm lightdm lightdm-gtk-greeter cinnamon cinnamon-translations gnome-terminal
             systemctl enable lightdm.service
             break
             ;;
