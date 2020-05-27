@@ -231,6 +231,22 @@ echo ""
 echo "La instalación de paquetes ha finalizado."
 echo ""
 
+#Instalar Feral Gamemode
+read -p "Quieres instalar Gamemode? [s/n] " pGamemode
+if [ $pGamemode = 's' ] || [ $pGamemode = 'S' ]
+then
+    echo "Instalando Gamemode"
+    pacman -S --noconfirm wget
+    wget https://raw.github.com/kenaikahnra/miarchlinux/master/gamemode-git-r559.db7d52d-1-x86_64.pkg.tar.xz
+    wget https://raw.github.com/kenaikahnra/miarchlinux/master/lib32-gamemode-git-r559.db7d52d-1-x86_64.pkg.tar.xz
+    pacman -U --noconfirm gamemode-git-r559.db7d52d-1-x86_64.pkg.tar.xz
+    pacman -U --noconfirm lib32-gamemode-git-r559.db7d52d-1-x86_64.pkg.tar.xz
+    rm -rf gamemode-git-r559.db7d52d-1-x86_64.pkg.tar.xz
+    rm -rf lib32-gamemode-git-r559.db7d52d-1-x86_64.pkg.tar.xz
+    pacman -Rsn --noconfirm wget
+fi
+echo ""
+
 # Enable services
 echo "Activando el arranque automatico de la red..."
 systemctl enable NetworkManager.service
