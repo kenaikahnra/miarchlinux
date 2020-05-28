@@ -114,7 +114,7 @@ do
             ;;
         4)
             echo "Instalando Mate"
-            pacman -S --noconfirm mate mate-terminal mate-control-center pluma lightdm lightdm-gtk-greeter
+            pacman -S --noconfirm mate mate-terminal pluma lightdm lightdm-gtk-greeter
             systemctl enable lightdm.service
             break
             ;;
