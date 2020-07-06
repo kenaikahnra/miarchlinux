@@ -149,8 +149,8 @@ echo ""
 echo "Instalando el sistema base..."
 echo ""
 pacman -Syy
-pacman -S --noconfirm reflector
-reflector -c "ES" -f 12 -l 10 -n 12 --save /etc/pacman.d/mirrorlist
+#pacman -S --noconfirm reflector
+#reflector -c "ES" -f 12 -l 10 -n 12 --save /etc/pacman.d/mirrorlist
 pacstrap /mnt base base-devel linux linux-firmware grub os-prober efibootmgr nano intel-ucode xorg xorg-xinit networkmanager ntfs-3g git xdg-user-dirs reflector
 echo ""
 
