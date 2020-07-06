@@ -101,18 +101,18 @@ done
 
 #Formatear partición /boot
 echo "Formateando partición de arranque..."
-mkfs.fat -F32 /dev/${TARGET}1
+mkfs.fat -F32 /dev/${TARGET}p1
 echo ""
 
 #Formatear partición [swap]
 echo "Formateando partición swap..."
-mkswap /dev/${TARGET}2
-swapon /dev/${TARGET}2
+mkswap /dev/${TARGET}p2
+swapon /dev/${TARGET}p2
 echo ""
 
 #Formatear partición /
 echo "Formateando partición raiz..."
-mkfs.ext4 -F /dev/${TARGET}3
+mkfs.ext4 -F /dev/${TARGET}p3
 echo ""
 
 #Formatear /home
@@ -122,20 +122,20 @@ then
     if [ $pHome = 's' ] && [ $pHome = 'S' ]
         then 
         echo "Formateando partición /home..."
-        mkfs.ext4 -F /dev/${TARGET}4
+        mkfs.ext4 -F /dev/${TARGET}p4
     fi
 else
     echo "Formateando partición /home..."
-    mkfs.ext4 -F /dev/${TARGET}4
+    mkfs.ext4 -F /dev/${TARGET}p4
 fi
 echo ""
 
 #Montar partición /
-mount /dev/${TARGET}3 /mnt
+mount /dev/${TARGET}p3 /mnt
 
 #Montar partición /home
 mkdir /mnt/home
-mount /dev/${TARGET}4 /mnt/home
+mount /dev/${TARGET}p4 /mnt/home
 
 echo "Particiones creadas:"
 echo ""
