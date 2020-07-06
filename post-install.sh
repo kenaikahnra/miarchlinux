@@ -35,9 +35,9 @@ done
 echo ""
 
 # Install bootloader
-echo "Instalando GRUB en /dev/${TARGET}1"
+echo "Instalando GRUB en /dev/${TARGET}p1"
 mkdir /boot/efi
-mount /dev/${TARGET}1 /boot/efi
+mount /dev/${TARGET}p1 /boot/efi
 grub-install --target=x86_64-efi --bootloader-id=GRUB --efi-directory=/boot/efi --removable
 os-prober
 grub-mkconfig -o /boot/grub/grub.cfg
