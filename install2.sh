@@ -13,7 +13,6 @@ echo ""
 lsblk
 echo ""
 read -p "Escribe el nombre del disco donde quieres instalar Arch linux (todo el contenido será borrado): " TARGET
-export TARGET
 echo ""
 
 #Sistema de particionado
