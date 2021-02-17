@@ -179,16 +179,17 @@ do
 done
 echo ""
 
-#Instalar Yay
-read -p "Quieres instalar Yay? [s/n] " pYay
-if [ $pYay = 's' ] || [ $pYay = 'S' ]
+#Instalar Paru
+read -p "Quieres instalar Paru? [s/n] " pParu
+if [ $pParu = 's' ] || [ $pParu = 'S' ]
 then
-    echo "Instalando Yay"
-    pacman -S --noconfirm wget
-    wget https://raw.github.com/kenaikahnra/miarchlinux/master/yay-9.4.7-1-x86_64.pkg.tar.xz
-    pacman -U --noconfirm yay-9.4.7-1-x86_64.pkg.tar.xz
-    rm -rf yay-9.4.7-1-x86_64.pkg.tar.xz
-    pacman -Rsn --noconfirm wget
+    echo "Instalando Paru"
+    pacman -S git
+    git clone https://aur.archlinux.org/paru.git
+    cd paru
+    makepkg -si
+    pacman -Rsn --noconfirm git
+    rm -Rf paru
 fi
 echo ""
 
