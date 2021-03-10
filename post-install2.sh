@@ -96,7 +96,7 @@ do
     case $pEscritorio in
         1)
             echo "Instalando Kde"
-            pacman -S --noconfirm plasma-desktop user-manager kscreen konsole dolphin kate breeze-gtk kde-gtk-config libappindicator-gtk3 plasma-nm plasma-pa ark okular kinfocenter kwalletmanager transmission-qt gwenview kipi-plugins spectacle kcolorchooser vlc konversation partitionmanager sddm sddm-kcm kdialog discover packagekit-qt5
+            pacman -S --noconfirm plasma-desktop kscreen konsole dolphin kate breeze-gtk kde-gtk-config libappindicator-gtk3 plasma-nm plasma-pa ark okular kinfocenter kwalletmanager transmission-qt gwenview kipi-plugins spectacle kcolorchooser vlc konversation partitionmanager sddm sddm-kcm kdialog discover packagekit-qt5
             systemctl enable sddm.service
             break
             ;;
@@ -151,6 +151,7 @@ echo ""
 echo "1.- Firefox"
 echo "2.- Chromium"
 echo "3.- Opera"
+echo "4.- Ninguno"
 echo ""
 while :
 do
@@ -170,6 +171,9 @@ do
         3)
             echo "Instalando Opera"
             pacman -S --noconfirm opera
+            break
+            ;;
+        4)
             break
             ;;
         *)
@@ -237,14 +241,7 @@ read -p "Quieres instalar Gamemode? [s/n] " pGamemode
 if [ $pGamemode = 's' ] || [ $pGamemode = 'S' ]
 then
     echo "Instalando Gamemode"
-    pacman -S --noconfirm wget
-    wget https://raw.github.com/kenaikahnra/miarchlinux/master/gamemode-git-r559.db7d52d-1-x86_64.pkg.tar.xz
-    wget https://raw.github.com/kenaikahnra/miarchlinux/master/lib32-gamemode-git-r559.db7d52d-1-x86_64.pkg.tar.xz
-    pacman -U --noconfirm gamemode-git-r559.db7d52d-1-x86_64.pkg.tar.xz
-    pacman -U --noconfirm lib32-gamemode-git-r559.db7d52d-1-x86_64.pkg.tar.xz
-    rm -rf gamemode-git-r559.db7d52d-1-x86_64.pkg.tar.xz
-    rm -rf lib32-gamemode-git-r559.db7d52d-1-x86_64.pkg.tar.xz
-    pacman -Rsn --noconfirm wget
+    pacman -S --noconfirm gamemode lib32-gamemode
 fi
 echo ""
 
