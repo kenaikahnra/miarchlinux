@@ -116,18 +116,8 @@ mkfs.ext4 -F /dev/${TARGET}p7
 echo ""
 
 #Formatear /home
-if [ $pParticionado = '2' ]
-then
-    read -p 'Deseas formatear la partición /home? [s/n]: ' pHome
-    if [ $pHome = 's' ] && [ $pHome = 'S' ]
-        then 
-        echo "Formateando partición /home..."
-        mkfs.ext4 -F /dev/${TARGET}p8
-    fi
-else
-    echo "Formateando partición /home..."
-    mkfs.ext4 -F /dev/${TARGET}p8
-fi
+echo "Formateando partición /home..."
+mkfs.ext4 -F /dev/${TARGET}p8
 echo ""
 
 #Montar partición /
