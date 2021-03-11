@@ -183,20 +183,6 @@ do
 done
 echo ""
 
-#Instalar Paru
-read -p "Quieres instalar Paru? [s/n] " pParu
-if [ $pParu = 's' ] || [ $pParu = 'S' ]
-then
-    echo "Instalando Paru"
-    pacman -S git
-    git clone https://aur.archlinux.org/paru.git
-    cd paru
-    makepkg -si
-    pacman -Rsn --noconfirm git
-    rm -Rf paru
-fi
-echo ""
-
 #Instalar Bluetooth
 read -p "Quieres instalar bluetooth? [s/n] " pBluetooth
 if [ $pBluetooth = 's' ] || [ $pBluetooth = 'S' ]
